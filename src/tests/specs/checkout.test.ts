@@ -5,12 +5,12 @@ import { LoginPage } from '../pages/loginPage.ts';
 
 test('Checkout end to end process using POM', async ({ page }) => {
 
- // ---------- LOGIN ----------
+ // Login flow
   const login = new LoginPage(page);
   await login.navigateToLoginPage();
   await login.login('standard_user', 'secret_sauce');
 
-  // ---------- ADD TO CART ----------
+  // Add to Cart flow
   const cart = new addToCartPage(page);
   await cart.addBackpackBtn();
   await cart.addBikeLightToCart();
@@ -19,7 +19,7 @@ test('Checkout end to end process using POM', async ({ page }) => {
   await cart.openCart();
   await cart.verifyItemCount(3);
 
-  // ---------- CHECKOUT ----------
+  // end to end Checkout flow
   const checkout = new checkoutPage(page);
   await checkout.proceedToCheckout();
   await checkout.enterCheckoutInformation('John', 'Doe', '411001');
